@@ -2,6 +2,7 @@ package com.abul.word.service;
 
 import com.abul.word.model.WordStructure;
 import org.apache.commons.lang3.Validate;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -9,6 +10,7 @@ import java.util.function.Function;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingInt;
 
+@Service
 public class WordServiceImpl implements WordService {
 
     @Override
@@ -24,7 +26,10 @@ public class WordServiceImpl implements WordService {
 
         }
 
-        return WordStructure.builder().palindrome(palindrome).anagramOfPalindrome(anagramOfPalindrome).build();
+        return WordStructure.builder()
+                .palindrome(palindrome)
+                .anagramOfPalindrome(anagramOfPalindrome)
+                .word(word).build();
     }
 
     private boolean isPalindrome(final String word) {

@@ -3,6 +3,7 @@ package com.abul.word.service;
 import com.abul.word.model.WordStructure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -20,6 +21,7 @@ class WordServiceTest {
     }
 
     @DisplayName("Get word structure when word is null should throw NullPointerException")
+    @Test
     void getWordStructureWhenWordIsNullShouldThrowNullPointerException() {
         assertThrows(NullPointerException.class, () -> wordService.getWordStructure(null));
     }
