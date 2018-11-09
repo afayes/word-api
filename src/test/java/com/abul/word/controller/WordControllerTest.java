@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class WordControllerTests {
+public class WordControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -77,4 +77,3 @@ public class WordControllerTests {
                 .andExpect(jsonPath("$.anagramOfPalindrome").value(false));
     }
 }
-

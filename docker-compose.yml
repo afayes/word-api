@@ -1,0 +1,10 @@
+version: '2'
+services:
+  word-api:
+      image: afayes/word-api
+      container_name: word-api
+      ports:
+        - "8080:8080"
+
+
+
