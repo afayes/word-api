@@ -13,12 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package hello;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+package com.abul;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,9 +23,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -41,40 +40,40 @@ public class WordControllerTests {
 
     @Test
     public void testFivePositiveWords() throws Exception {
-        List<String> words = Arrays.asList("kayak", "sagas", "solos", "eve", "anna");
+        final List<String> words = Arrays.asList("kayak", "sagas", "solos", "eve", "anna");
 
-        for (String word : words) {
-            this.mockMvc.perform(get("/words/" + word )).andDo(print()).andExpect(status().isOk())
+        for (final String word : words) {
+            mockMvc.perform(get("/words/" + word)).andDo(print()).andExpect(status().isOk())
                     .andExpect(jsonPath("$.palindrome").value(true));
         }
     }
 
     @Test
     public void testFiveNegativeWords() throws Exception {
-        List<String> words = Arrays.asList("foo", "bar", "buzz", "fizz", "cloud");
+        final List<String> words = Arrays.asList("foo", "bar", "buzz", "fizz", "cloud");
 
-        for (String word : words) {
-            this.mockMvc.perform(get("/words/" + word )).andDo(print()).andExpect(status().isOk())
+        for (final String word : words) {
+            mockMvc.perform(get("/words/" + word)).andDo(print()).andExpect(status().isOk())
                     .andExpect(jsonPath("$.palindrome").value(false));
         }
     }
 
     @Test
     public void testFivePositiveAnagrams() throws Exception {
-        List<String> words = Arrays.asList("foo", "kkppd", "buzzbu", "pizizp", "gggoo");
+        final List<String> words = Arrays.asList("foo", "kkppd", "buzzbu", "pizizp", "gggoo");
 
-        for (String word : words) {
-            this.mockMvc.perform(get("/words/" + word )).andDo(print()).andExpect(status().isOk())
+        for (final String word : words) {
+            mockMvc.perform(get("/words/" + word)).andDo(print()).andExpect(status().isOk())
                     .andExpect(jsonPath("$.anagramOfPalindrome").value(true));
         }
     }
 
     @Test
     public void testFiveNegativeAnagrams() throws Exception {
-        List<String> words = Arrays.asList("abcd", "five", "eleven", "pizza", "eved");
+        final List<String> words = Arrays.asList("abcd", "five", "eleven", "pizza", "eved");
 
-        for (String word : words) {
-            this.mockMvc.perform(get("/words/" + word )).andDo(print()).andExpect(status().isOk())
+        for (final String word : words) {
+            mockMvc.perform(get("/words/" + word)).andDo(print()).andExpect(status().isOk())
                     .andExpect(jsonPath("$.anagramOfPalindrome").value(false));
         }
     }

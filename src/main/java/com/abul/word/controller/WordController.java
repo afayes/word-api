@@ -1,4 +1,4 @@
-package hello;
+package com.abul.word.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
