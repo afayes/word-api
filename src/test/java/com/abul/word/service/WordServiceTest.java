@@ -41,4 +41,22 @@ class WordServiceTest {
 
         assertFalse(wordStructure.isPalindrome(), "Word should not be palindrome");
     }
+
+    @ParameterizedTest()
+    @DisplayName("Get word structure when word is an anagram should return anagram is true")
+    @ValueSource(strings = {"", "a", "aA", "Aa", "foo", "kkppd", "buzzbu", "pizizp", "gggoo"})
+    void getWordStructureWhenWordIsAnAnagramShouldReturnAnagramIsTrue(final String word) {
+        final WordStructure wordStructure = wordService.getWordStructure(word);
+
+        assertTrue(wordStructure.isAnagramOfPalindrome(), "Word should be an anagram");
+    }
+
+    @ParameterizedTest()
+    @DisplayName("Get word structure when word is not an anagram should return anagram is false")
+    @ValueSource(strings = {"ab", "abc", "abcd", "eved", "five", "pizza", "eleven",})
+    void getWordStructureWhenWordIsNotAnAnagramShouldReturnAnagramIsFalse(final String word) {
+        final WordStructure wordStructure = wordService.getWordStructure(word);
+
+        assertFalse(wordStructure.isAnagramOfPalindrome(), "Word should not be an anagram");
+    }
 }
