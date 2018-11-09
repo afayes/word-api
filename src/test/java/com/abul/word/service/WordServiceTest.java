@@ -16,12 +16,11 @@ class WordServiceTest {
 
     @BeforeEach
     void setUp() {
+        wordService = new WordServiceImpl();
     }
 
-    @ParameterizedTest()
     @DisplayName("Get word structure when word is null should throw NullPointerException")
-    @ValueSource(strings = {"", "a", "aa", "eve", "anna", "kayak", "sagas", "solos"})
-    void getWordStructureWhenWordIsNullShouldThrowNullPointerException(final String word) {
+    void getWordStructureWhenWordIsNullShouldThrowNullPointerException() {
         assertThrows(NullPointerException.class, () -> wordService.getWordStructure(null));
     }
 
