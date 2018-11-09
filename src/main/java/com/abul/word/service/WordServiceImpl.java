@@ -47,7 +47,7 @@ public class WordServiceImpl implements WordService {
      * @return true if word is an anagram of palindrome otherwise false;
      */
     private boolean isAnagramOfPalindrome(final String word) {
-        final Map<Integer, Integer> characterFrequencies = word.chars().boxed().sorted().collect(groupingBy(Function.identity(), summingInt(e -> 1)));
+        final Map<Integer, Integer> characterFrequencies = word.chars().boxed().sorted().collect(groupingBy(Function.identity(), summingInt(num -> 1)));
         final Integer oddFrequenciesCount = characterFrequencies.values().stream().reduce(0, (count, frequency) -> frequency % 2 != 0 ? count + 1 : count);
         return oddFrequenciesCount < 2;
     }
