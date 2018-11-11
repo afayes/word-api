@@ -10,9 +10,15 @@ import java.util.function.Function;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingInt;
 
+/**
+ * Defines a {@link WordService}.
+ */
 @Service
 public class WordServiceImpl implements WordService {
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public WordStructure getWordStructure(final String word) {
         Validate.notNull(word, "word must not be null");
@@ -23,7 +29,6 @@ public class WordServiceImpl implements WordService {
             anagramOfPalindrome = true;
         } else {
             anagramOfPalindrome = isAnagramOfPalindrome(word.toLowerCase());
-
         }
 
         return WordStructure.builder()
